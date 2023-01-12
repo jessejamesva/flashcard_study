@@ -1,0 +1,17 @@
+{% extends "flash/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mt-2 mb-4">New Flash Card</legend>
+                {{ form | crispy }} <!--#filters form through crispy-->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-light mt-2" type="submit">Save</button>
+            </div>
+        </form>
+        
+    </div>
+{% endblock %}

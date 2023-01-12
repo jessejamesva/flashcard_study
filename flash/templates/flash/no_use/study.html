@@ -1,0 +1,59 @@
+{% extends "flash/base.html" %}
+
+{% block content %}
+<h1>STUDY!</h1>
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+        Dropdown button
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Link 1</a></li>
+        <li><a class="dropdown-item" href="#">Link 2</a></li>
+        <li><a class="dropdown-item" href="#">Link 3</a></li>
+    </ul>
+</div>
+<div class = "container">
+    {% for c in cards %}
+    <div class="card">
+        <div >
+            <div>
+                <h1>Subject: {{ c.subject }}</h1>
+                <h3>Created By {{c.creator }}</h3>
+                <h3>On {{ c.date_created }} with a ID of {{ c.id }}</h3> 
+                <p>Question: {{ c.question }}</p> 
+                <p>Answer: {{ c.answer }}</p>
+                <br>
+                <a href="{% url 'flash-detail' c.id %}">&#128394</a>
+            </div>
+        </div>
+    </div>  
+           
+    {% endfor %}
+    {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+            <a class = "btn btn-outline-dark mb-4" href="?page=1">First</a>
+            <a class = "btn btn-outline-dark mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a> 
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-dark mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-dark mb-4" href="?page={{ num }}">{{ num }}</a>   
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class = "btn btn-outline-dark mb-4" href="?page={{ page_obj.page_number }}">Next</a>
+            <a class = "btn btn-outline-dark mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a> 
+        {% endif %}
+
+    {% endif %}
+    
+</div>
+
+
+    
+{% endblock %}
+

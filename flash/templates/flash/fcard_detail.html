@@ -1,0 +1,17 @@
+{% extends "flash/base.html" %}
+
+{% block content %}
+<div class='container'>
+    <h2>Subject: {{ object.subject }} created by {{object.creator}}</h2>
+    <h5>On {{ object.date_created }}  Post id = {{object.id}}</h5>
+    <p><strong>Question: </strong> {{ object.question }}</p>
+    <br>
+    <p><strong>Answer: </strong>{{ object.answer}}</p>
+    {% if object.creator == user %}
+        <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'flash-update' object.id %}">Update</a> 
+        <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'flash-delete' object.id %}">Delete</a>   
+    {% endif %}
+</div>
+
+    
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "flash/base.html" %}
+
+{% block content %}
+<h1 class="mb-3">Choose a topic to start studying</h1>
+<div class = "container">
+    <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+            Dropdown button
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/study/user/{{user}}/All">All</a></li>
+            {% for card in cards %}
+                <li><a class="dropdown-item" href="/study/user/{{user}}/{{card.subject}}">{{ card.subject }}</a></li>
+            {% endfor %}
+            
+        </ul>
+    </div>
+    
+    
+</div>
+
+
+    
+{% endblock %}
+

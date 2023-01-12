@@ -1,0 +1,46 @@
+{% extends "flash/base.html" %}
+
+{% block content %}
+<h1>STUDY!</h1>
+<div class="container">
+    {% for c in cards %}
+        <div class="card"  id="{{c.id}}">
+            <div class="card__inner" >
+                <div class="card__face card__face--front">
+                    <h2>{{ c.question }}</h2>
+                </div>
+                <div class="card__face card__face--back">
+                    <div class="card__content">
+                        <div class="card__header">
+                            <img src="pp.jpg" alt="" class="pp" />
+                            <h2>Jesse Vargas</h2>
+                        </div>
+                        <div class="card__body">
+                            <h3>JavaScript Wizard</h3>
+                            <p> {{ c.answer }}</p>
+                            <a href="{% url 'flash-detail' c.id %}">&#128394</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                
+            (function ()  {var cd = document.querySelector(".card__inner");
+                
+        
+                document.getElementById('{{ c.id }}').addEventListener("click", function (e) {
+                    cd.classList.toggle('is-flipped');
+                })})();
+        
+            </script> 
+        </div>          
+           
+    {% endfor %}
+    
+</div>
+
+
+    
+{% endblock %}
+
